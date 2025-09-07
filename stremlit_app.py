@@ -13,6 +13,9 @@ model = joblib.load("best_rf_model.pkl")
 # -------------------------
 data = pd.read_csv("Telco-Customer-Churn.csv")
 
+data['TotalCharges'] = pd.to_numeric(data['TotalCharges'], errors='coerce')
+data['TotalCharges'] = data['TotalCharges'].fillna(data['TotalCharges'].median())
+
 # Target column
 target = "Churn"
 
